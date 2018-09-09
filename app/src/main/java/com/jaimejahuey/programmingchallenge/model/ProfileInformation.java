@@ -1,5 +1,7 @@
 package com.jaimejahuey.programmingchallenge.model;
 
+import java.util.ArrayList;
+
 import io.realm.annotations.PrimaryKey;
 
 public class ProfileInformation {
@@ -9,8 +11,7 @@ public class ProfileInformation {
     private String name;
     private int age;
     private String imageUrl;
-//    private
-
+    private ArrayList<String> hobbies;
 
     public ProfileInformation() {
     }
@@ -35,6 +36,10 @@ public class ProfileInformation {
         return imageUrl;
     }
 
+    public ArrayList<String> getHobbies() {
+        return hobbies;
+    }
+
     public void setID(String ID) {
         this.ID = ID;
     }
@@ -53,5 +58,9 @@ public class ProfileInformation {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setHobbies(ArrayList<String> hobbies) {
+        this.hobbies = hobbies;
     }
 }
