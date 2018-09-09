@@ -20,6 +20,7 @@
             android:id="@+id/card_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
             android:padding="20dp">
 
             <TextView

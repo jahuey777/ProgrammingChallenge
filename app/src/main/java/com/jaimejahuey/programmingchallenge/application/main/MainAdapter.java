@@ -3,6 +3,7 @@ package com.jaimejahuey.programmingchallenge.application.main;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.jaimejahuey.programmingchallenge.R;
@@ -40,8 +41,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainProfileCardViewHolder>
             holder.ageTextView.setText(String.valueOf(profile.getAge()));
             Picasso.get().load(profile.getImageUrl()).into(holder.profileImage);
 
-            if(profile.getGender().equals("male")) holder.constraintLayout.setBackgroundColor(holder.constraintLayout.getContext().getResources().getColor(R.color.colorPrimary));
+            if(profile.getGender().equals("male")) holder.constraintLayout.setBackgroundColor(holder.constraintLayout.getContext().getResources().getColor(R.color.colorMaleBackgroud));
             else holder.constraintLayout.setBackgroundColor(holder.constraintLayout.getContext().getResources().getColor(R.color.colorAccent));
+
+            holder.constraintLayout.setOnClickListener(v -> listener.onCardClick(position, profile));
         }
     }
 
