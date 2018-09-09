@@ -1,4 +1,4 @@
-package com.jaimejahuey.programmingchallenge;
+package com.jaimejahuey.programmingchallenge.model;
 
 import io.realm.annotations.PrimaryKey;
 
@@ -11,6 +11,9 @@ public class ProfileInformation {
     private String imageUrl;
 //    private
 
+
+    public ProfileInformation() {
+    }
 
     public String getID() {
         return ID;
