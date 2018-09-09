@@ -11,11 +11,12 @@ import com.jaimejahuey.programmingchallenge.application.base.BaseViewModel;
 import com.jaimejahuey.programmingchallenge.model.ProfileInformation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivityViewModel extends BaseViewModel {
 
     private ValueEventListener mProfilesListener;
-    public ArrayList<ProfileInformation> profiles;
+    public ArrayList<ProfileInformation> profiles = new ArrayList<>();
     public MutableLiveData<Boolean> profilesFetched = new MutableLiveData<>();
 
     public MainActivityViewModel() {
@@ -27,13 +28,19 @@ public class MainActivityViewModel extends BaseViewModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                profiles.clear(); //Clear the previous list.
+
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     ProfileInformation profileInformation  = snapshot.getValue(ProfileInformation.class);
-                    if (profileInformation!=null) profiles.add(profileInformation);
+                    if (profileInformation != null) profiles.add(profileInformation);
                 }
 
-                if(profiles.isEmpty()) profilesFetched.setValue(false);
-                else profilesFetched.setValue(true);
+                if(!profiles.isEmpty()){
+                    profilesFetched.setValue(true);
+                }
+                else {
+                    profilesFetched.setValue(false);
+                }
             }
 
             @Override
@@ -43,7 +50,7 @@ public class MainActivityViewModel extends BaseViewModel {
             }
         });
 
-        dbReference.addValueEventListener(mProfilesListener);
+//        dbReference.addValueEventListener(mProfilesListener);
     }
 
 }
