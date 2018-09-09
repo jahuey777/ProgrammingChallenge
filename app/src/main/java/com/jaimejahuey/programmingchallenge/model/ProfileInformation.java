@@ -1,10 +1,11 @@
 package com.jaimejahuey.programmingchallenge.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import io.realm.annotations.PrimaryKey;
 
-public class ProfileInformation {
+public class ProfileInformation implements Serializable{
 
     @PrimaryKey private String ID;
     private String gender;
@@ -63,4 +64,5 @@ public class ProfileInformation {
     public void setHobbies(ArrayList<String> hobbies) {
         this.hobbies = hobbies;
     }
+
 }

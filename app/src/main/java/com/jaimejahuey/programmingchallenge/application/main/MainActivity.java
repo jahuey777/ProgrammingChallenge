@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.jaimejahuey.programmingchallenge.R;
+import com.jaimejahuey.programmingchallenge.application.profile.ProfileActivity;
 import com.jaimejahuey.programmingchallenge.databinding.ActivityMainBinding;
 import com.jaimejahuey.programmingchallenge.model.ProfileInformation;
 
@@ -21,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = ViewModelProviders.of(MainActivity.this).get(MainActivityViewModel.class);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     @Override
     public void onCardClick(int position, ProfileInformation profile) {
-
+        startActivity(ProfileActivity.newIntent(this, profile));
     }
 
 }
