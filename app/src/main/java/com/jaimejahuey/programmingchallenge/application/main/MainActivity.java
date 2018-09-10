@@ -1,11 +1,16 @@
 package com.jaimejahuey.programmingchallenge.application.main;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.jaimejahuey.programmingchallenge.R;
@@ -19,6 +24,10 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
     ActivityMainBinding binding;
     MainAdapter adapter;
 
+    private static final String [] sortOptions = {"Default ", "Age Ascending", "Age Descending", "Name Ascending", "Name Descending"};
+    private static final String [] filterOptions = {"All ", "Females", "Males"};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +37,29 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
         setObservers();
         viewModel.getProfiles();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_main_filter:
+                showFilterDialog();
+                return true;
+            case R.id.menu_main_sort:
+                showSortDialog();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void setObservers () {
@@ -50,6 +82,26 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
         adapter = new MainAdapter(viewModel.profiles, this);
         binding.mainRecyclerview.setAdapter(adapter);
+    }
+
+    private void showFilterDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Filter");
+        dialog.setItems(filterOptions, (dialog1, which) -> {
+
+        });
+
+        dialog.show();
+    }
+
+    private void showSortDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Sort");
+        dialog.setItems(sortOptions, (dialog1, which) -> {
+
+        });
+
+        dialog.show();
     }
 
     @Override

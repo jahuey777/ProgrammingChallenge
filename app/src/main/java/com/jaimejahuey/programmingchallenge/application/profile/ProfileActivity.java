@@ -5,15 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.jaimejahuey.programmingchallenge.R;
-import com.jaimejahuey.programmingchallenge.application.main.MainActivity;
-import com.jaimejahuey.programmingchallenge.application.main.MainActivityViewModel;
 import com.jaimejahuey.programmingchallenge.databinding.ActivityProfileBinding;
 import com.jaimejahuey.programmingchallenge.model.ProfileInformation;
 import com.squareup.picasso.Picasso;
