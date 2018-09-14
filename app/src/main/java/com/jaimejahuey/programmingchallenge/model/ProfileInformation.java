@@ -12,7 +12,7 @@ public class ProfileInformation implements Serializable{
     private String name;
     private int age;
     private String imageUrl;
-    private ArrayList<String> hobbies;
+    private ArrayList<String> hobbies = new ArrayList<>();
 
     public ProfileInformation() {
     }

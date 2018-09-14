@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     private static final String [] sortOptions = {"Default ", "Age Ascending", "Age Descending", "Name Ascending", "Name Descending"};
     private static final String [] filterOptions = {"All ", "Females", "Males"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +66,13 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         viewModel.profilesFetched.observe(this, aBoolean -> {
             if(aBoolean != null) {
                 if(aBoolean) {
-                    binding.mainProgressBar.setVisibility(View.GONE);
                     setRecyclerView();
                 } else {
                     binding.mainRecyclerview.setVisibility(View.GONE);
                     binding.mainErrorText.setVisibility(View.VISIBLE);
                 }
+
+                binding.mainProgressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -87,8 +88,23 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
     private void showFilterDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Filter");
-        dialog.setItems(filterOptions, (dialog1, which) -> {
 
+        dialog.setItems(viewModel.filterOptions, (dialog1, which) -> {
+            switch (which) {
+                case 0:
+                    viewModel.currentFilterSort = viewModel.FILTER_ALL;
+                    viewModel.getProfilesByFilter(null);
+                    break;
+                case 1:
+                    viewModel.currentFilterSort = viewModel.FILTER_FEMALES;
+                    viewModel.getProfilesByFilter("female");
+                    break;
+                case 2:
+                    viewModel.currentFilterSort = viewModel.FILTER_MALES;
+                    viewModel.getProfilesByFilter("male");
+                    break;
+
+            }
         });
 
         dialog.show();
@@ -99,6 +115,25 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         dialog.setTitle("Sort");
         dialog.setItems(sortOptions, (dialog1, which) -> {
 
+            switch (which) {
+                case 0: //Default
+
+                    break;
+                case 1: //Age Ascending
+                    Log.d("sorting by ", " age");
+                    viewModel.getProfilesBySort("age");
+                    break;
+                case 2: //Age Descending
+
+                    break;
+                case 3: //Name Ascending
+
+                    break;
+                case 4: //Name Ascending
+
+                    break;
+
+            }
         });
 
         dialog.show();
