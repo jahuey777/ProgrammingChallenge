@@ -16,7 +16,7 @@
             android:id="@+id/main_error_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Error Loading Data Please Try Again"
+            android:text="@string/main_error_text"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

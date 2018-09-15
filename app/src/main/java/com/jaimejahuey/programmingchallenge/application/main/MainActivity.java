@@ -87,8 +87,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     private void showFilterDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Filter");
-
+        dialog.setTitle(R.string.text_filter);
         dialog.setItems(filterOptions, (dialog1, which) -> {
             switch (which) {
                 case 0: //Get default
@@ -111,9 +110,8 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     private void showSortDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Sort");
+        dialog.setTitle(R.string.text_sort);
         dialog.setItems(sortOptions, (dialog1, which) -> {
-
             switch (which) {
                 case 0: //Default
                     viewModel.currentSort = "id";

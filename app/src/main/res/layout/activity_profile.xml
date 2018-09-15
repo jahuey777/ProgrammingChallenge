@@ -15,109 +15,94 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
+            android:contentDescription="@null"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/profile_name_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="16sp"
+            android:text="@string/text_name"
             android:layout_marginTop="50dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_profile_image"
             app:layout_constraintRight_toLeftOf="@id/profile_name_textview"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_name_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="50dp"
             app:layout_constraintLeft_toRightOf="@id/profile_name_label"
             app:layout_constraintTop_toBottomOf="@id/profile_profile_image"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="James" />
+            tools:text="James"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_age_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age:"
-            android:textSize="16sp"
+            android:text="@string/text_age"
             android:layout_marginTop="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_name_label"
             app:layout_constraintRight_toLeftOf="@id/profile_age_textview"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_age_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             app:layout_constraintLeft_toRightOf="@id/profile_age_label"
             app:layout_constraintTop_toBottomOf="@id/profile_name_textview"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="23" />
+            tools:text="23"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_gender_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender:"
-            android:textSize="16sp"
+            android:text="@string/text_gender"
             android:layout_marginTop="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_age_label"
             app:layout_constraintRight_toLeftOf="@id/profile_gender_textview"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_gender_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             app:layout_constraintLeft_toRightOf="@id/profile_gender_label"
             app:layout_constraintTop_toBottomOf="@id/profile_age_textview"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="Male" />
+            tools:text="Male"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_hobbies_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hobbies:"
-            android:textSize="16sp"
+            android:text="@string/text_hobbies"
             android:layout_marginTop="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_gender_label"
             app:layout_constraintRight_toLeftOf="@id/profile_hobbies_textview"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
         <TextView
             android:id="@+id/profile_hobbies_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             app:layout_constraintLeft_toRightOf="@id/profile_hobbies_label"
             app:layout_constraintTop_toBottomOf="@id/profile_gender_label"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="Soccer, tennis, golf" />
+            tools:text="Soccer, tennis, golf"
+            style="@style/AppTheme.ProfileTextViewStyle"/>
 
 
     </android.support.constraint.ConstraintLayout>

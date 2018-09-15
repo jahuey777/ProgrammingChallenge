@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ProgrammingChallenge</string>
+
+    <!--General Text-->
+    <string name="text_age">Age:</string>
+    <string name="main_error_text">Error Loading Data Please Try Again</string>
+    <string name="text_filter">Filter</string>
+    <string name="text_gender">Gender:</string>
+    <string name="text_hobbies">Hobbies:</string>
+    <string name="text_name">Name</string>
+    <string name="text_sort">Sort</string>
+
 </resources>
