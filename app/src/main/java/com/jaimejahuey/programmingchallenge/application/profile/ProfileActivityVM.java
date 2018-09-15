@@ -7,5 +7,4 @@ public class ProfileActivityVM extends BaseViewModel {
 
     public ProfileInformation profile;
 
-
 }

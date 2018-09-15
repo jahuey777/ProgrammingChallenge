@@ -51,7 +51,6 @@ public class MainActivityViewModel extends BaseViewModel {
                 profilesFetched.setValue(false);
             }
         });
-
     }
 
     private void filterResults() {
@@ -66,6 +65,7 @@ public class MainActivityViewModel extends BaseViewModel {
         } else {
             profiles.addAll(tempProfiles);
         }
+
     }
 
     private void updateUi() {

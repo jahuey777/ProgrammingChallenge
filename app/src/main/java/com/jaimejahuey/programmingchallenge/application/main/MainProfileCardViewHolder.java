@@ -23,5 +23,4 @@ public class MainProfileCardViewHolder extends RecyclerView.ViewHolder {
         constraintLayout = itemView.findViewById(R.id.card_constraint_layout);
     }
 
-
 }
