@@ -1,14 +1,12 @@
 package com.jaimejahuey.programmingchallenge.application.main;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +17,7 @@ import com.jaimejahuey.programmingchallenge.application.profile.ProfileActivity;
 import com.jaimejahuey.programmingchallenge.databinding.ActivityMainBinding;
 import com.jaimejahuey.programmingchallenge.model.ProfileInformation;
 
+//This app is not optimized for a large data set. This is just for small sets of data being pulled from FireBase.
 public class MainActivity extends AppCompatActivity implements MainAdapter.onSelectListener{
 
     MainActivityViewModel viewModel;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         viewModel = ViewModelProviders.of(MainActivity.this).get(MainActivityViewModel.class);
 
         setObservers();
-        viewModel.getProfiles();
+        viewModel.getProfiles2();
     }
 
     @Override
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         viewModel.profilesFetched.observe(this, aBoolean -> {
             if(aBoolean != null) {
                 if(aBoolean) {
+                    binding.mainRecyclerview.setVisibility(View.VISIBLE);
                     setRecyclerView();
                 } else {
                     binding.mainRecyclerview.setVisibility(View.GONE);
@@ -89,19 +89,19 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Filter");
 
-        dialog.setItems(viewModel.filterOptions, (dialog1, which) -> {
+        dialog.setItems(filterOptions, (dialog1, which) -> {
             switch (which) {
-                case 0:
-                    viewModel.currentFilterSort = viewModel.FILTER_ALL;
-                    viewModel.getProfilesByFilter(null);
+                case 0: //Get default
+                    viewModel.currentFilterType = null;
+                    viewModel.getProfiles2();
                     break;
-                case 1:
-                    viewModel.currentFilterSort = viewModel.FILTER_FEMALES;
-                    viewModel.getProfilesByFilter("female");
+                case 1://Female
+                    viewModel.currentFilterType = "female";
+                    viewModel.getProfiles2();
                     break;
-                case 2:
-                    viewModel.currentFilterSort = viewModel.FILTER_MALES;
-                    viewModel.getProfilesByFilter("male");
+                case 2://Male
+                    viewModel.currentFilterType = "male";
+                    viewModel.getProfiles2();
                     break;
 
             }
@@ -117,22 +117,30 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
             switch (which) {
                 case 0: //Default
-
+                    viewModel.currentSort = "id";
+                    viewModel.sortAscending = true;
+                    viewModel.getProfiles2();
                     break;
                 case 1: //Age Ascending
-                    Log.d("sorting by ", " age");
-                    viewModel.getProfilesBySort("age");
+                    viewModel.currentSort = "age";
+                    viewModel.sortAscending = true;
+                    viewModel.getProfiles2();
                     break;
                 case 2: //Age Descending
-
+                    viewModel.currentSort = "age";
+                    viewModel.sortAscending = false;
+                    viewModel.getProfiles2();
                     break;
                 case 3: //Name Ascending
-
+                    viewModel.currentSort = "name";
+                    viewModel.sortAscending = true;
+                    viewModel.getProfiles2();
                     break;
-                case 4: //Name Ascending
-
+                case 4: //Name Descending
+                    viewModel.currentSort = "name";
+                    viewModel.sortAscending = false;
+                    viewModel.getProfiles2();
                     break;
-
             }
         });
 
