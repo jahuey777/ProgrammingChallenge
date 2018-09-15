@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         viewModel = ViewModelProviders.of(MainActivity.this).get(MainActivityViewModel.class);
 
         setObservers();
-        viewModel.getProfiles2();
+        viewModel.getProfiles();
     }
 
     @Override
@@ -93,17 +93,16 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
             switch (which) {
                 case 0: //Get default
                     viewModel.currentFilterType = null;
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
                 case 1://Female
                     viewModel.currentFilterType = "female";
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
                 case 2://Male
                     viewModel.currentFilterType = "male";
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
-
             }
         });
 
@@ -119,27 +118,27 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
                 case 0: //Default
                     viewModel.currentSort = "id";
                     viewModel.sortAscending = true;
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
                 case 1: //Age Ascending
                     viewModel.currentSort = "age";
                     viewModel.sortAscending = true;
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
                 case 2: //Age Descending
                     viewModel.currentSort = "age";
                     viewModel.sortAscending = false;
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
                 case 3: //Name Ascending
                     viewModel.currentSort = "name";
                     viewModel.sortAscending = true;
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
                 case 4: //Name Descending
                     viewModel.currentSort = "name";
                     viewModel.sortAscending = false;
-                    viewModel.getProfiles2();
+                    viewModel.getProfiles();
                     break;
             }
         });
