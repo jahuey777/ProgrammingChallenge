@@ -67,7 +67,7 @@ public class MainActivityViewModel extends BaseViewModel {
 
         if (currentFilterType != null) {
             for (ProfileInformation profileInformation: tempProfiles) {
-                if (profileInformation.getGender().equals(currentFilterType)) {
+                if (profileInformation.getGender().toLowerCase().equals(currentFilterType)) {
                     profiles.add(profileInformation);
                 }
             }

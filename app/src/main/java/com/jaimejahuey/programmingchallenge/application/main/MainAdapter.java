@@ -42,7 +42,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainProfileCardViewHolder>
             if (profile.getImageUrl()!=null ) Picasso.get().load(profile.getImageUrl()).into(holder.profileImage);
             else holder.profileImage.setImageResource(R.drawable.ic_person_placeholder);
 
-            if(profile.getGender().equals("male")) holder.constraintLayout.setBackgroundColor(holder.constraintLayout.getContext().getResources().getColor(R.color.colorMaleBackgroud));
+            if (profile.getGender().toLowerCase().equals("male")) holder.constraintLayout.setBackgroundColor(holder.constraintLayout.getContext().getResources().getColor(R.color.colorMaleBackgroud));
             else holder.constraintLayout.setBackgroundColor(holder.constraintLayout.getContext().getResources().getColor(R.color.colorAccent));
 
             holder.constraintLayout.setOnClickListener(v -> listener.onCardClick(position, profile));
