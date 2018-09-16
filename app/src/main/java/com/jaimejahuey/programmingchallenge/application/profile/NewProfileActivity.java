@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Toast;
 
 import com.jaimejahuey.programmingchallenge.R;
@@ -34,6 +33,7 @@ public class NewProfileActivity extends AppCompatActivity {
                 profile.setAge(Integer.parseInt(binding.newProfileAgeEdittext.getText().toString()));
                 profile.setGender(binding.newProfileGenderEdittext.getText().toString());
                 profile.setHobbies(binding.newProfileHobbiesEdittext.getText().toString());
+                profile.setImageUrl(null);
 
                 viewModel.addNewProfileToFirebase(profile);
                 NewProfileActivity.this.finish();

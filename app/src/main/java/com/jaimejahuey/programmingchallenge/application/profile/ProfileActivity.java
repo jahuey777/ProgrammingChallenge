@@ -22,16 +22,14 @@ import com.squareup.picasso.Picasso;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final String PROFILE_EXTRA = "PROFILE_EXTRA";
-    private static final String PROFILE_EXTRA_POSITION = "PROFILE_EXTRA_POSITION";
 
     private ActivityProfileBinding binding;
     ProfileActivityVM viewModel;
 
-    public static Intent newIntent(Context context, ProfileInformation profile, int position){
+    public static Intent newIntent(Context context, ProfileInformation profile) {
         Intent intent = new Intent(context, ProfileActivity.class);
 
         intent.putExtra(PROFILE_EXTRA, profile);
-        intent.putExtra(PROFILE_EXTRA_POSITION, position);
         return intent;
     }
 
@@ -56,10 +54,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_profile_delete:
                 showDeleteDialog();
                 break;
@@ -83,6 +82,33 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    private void getProfile() {
+        if(getIntent().getExtras() != null) {
+            viewModel.profile = (ProfileInformation) getIntent().getExtras().getSerializable(PROFILE_EXTRA);
+            viewModel.setCopy();
+            loadData();
+        }
+        else Toast.makeText(this, "Error loading profile. Please try again.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void loadData() {
+        binding.profileIncludedProfileInfo.profileNameEdittext.setText(viewModel.profile.getName());
+        binding.profileIncludedProfileInfo.profileAgeEdittext.setText(String.valueOf(viewModel.profile.getAge()));
+        binding.profileIncludedProfileInfo.profileGenderEdittext.setText(String.valueOf(viewModel.profile.getGender()));
+
+        if(viewModel.profile.getHobbies()!=null) binding.profileIncludedProfileInfo.profileHobbiesEdittext.setText(viewModel.profile.getHobbies());
+
+        if (viewModel.profile.getImageUrl() != null) Picasso.get().load(viewModel.profile.getImageUrl()).into(binding.profileProfileImage);
+        else binding.profileProfileImage.setImageResource(R.drawable.ic_person_placeholder);
+
+    }
+
+    /********************
+     *                  *
+     *     UI/Views     *
+     *                  *
+     ********************/
+
     private void setEditTextWatchers() {
         binding.profileIncludedProfileInfo.profileHobbiesEdittext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -98,29 +124,8 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void getProfile() {
-        if(getIntent().getExtras() != null) {
-            viewModel.profile = (ProfileInformation) getIntent().getExtras().getSerializable(PROFILE_EXTRA);
-            viewModel.profilePosition = getIntent().getExtras().getInt(PROFILE_EXTRA_POSITION);
-            viewModel.setCopy();
-            loadData();
-        }
-        else {
-            Toast.makeText(this, "Error loading profile. Please try again.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void loadData() {
-        Picasso.get().load(viewModel.profile.getImageUrl()).into(binding.profileProfileImage);
-        binding.profileIncludedProfileInfo.profileNameEdittext.setText(viewModel.profile.getName());
-        binding.profileIncludedProfileInfo.profileAgeEdittext.setText(String.valueOf(viewModel.profile.getAge()));
-        binding.profileIncludedProfileInfo.profileGenderEdittext.setText(String.valueOf(viewModel.profile.getGender()));
-
-        if(viewModel.profile.getHobbies()!=null) binding.profileIncludedProfileInfo.profileHobbiesEdittext.setText(viewModel.profile.getHobbies());
-    }
-
     private void setFabs() {
-        if (viewModel.profile.getGender().equals("male")){
+        if (viewModel.profile.getGender().equals("male")) {
             binding.profileSaveFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
             binding.profileEditFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
         }
@@ -139,6 +144,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    /********************
+     *                  *
+     *     Dialogs      *
+     *                  *
+     ********************/
 
     private void showConfirmationDialog(boolean finish) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);

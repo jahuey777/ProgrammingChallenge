@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     /********************
      *                  *
-     *     Dialogs      *
+     *      Dialogs     *
      *                  *
      ********************/
 
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     @Override
     public void onCardClick(int position, ProfileInformation profile) {
-        startActivity(ProfileActivity.newIntent(this, profile, position));
+        startActivity(ProfileActivity.newIntent(this, profile));
     }
 
 }

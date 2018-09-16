@@ -7,6 +7,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class ProfileInformation implements Serializable {
 
+    @PrimaryKey private String key;
     private String gender;
     private String name;
     private int age;
@@ -53,6 +54,14 @@ public class ProfileInformation implements Serializable {
 
     public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public ProfileInformation copyProfile(ProfileInformation profile) {

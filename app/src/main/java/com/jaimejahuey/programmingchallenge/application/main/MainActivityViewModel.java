@@ -22,7 +22,7 @@ public class MainActivityViewModel extends BaseViewModel {
 
     public String currentFilterType = null;
     public boolean sortAscending = true;
-    public String currentSort = "id"; //default
+    public String currentSort = null; //default
 
     public MainActivityViewModel() {
         super();
@@ -44,7 +44,10 @@ public class MainActivityViewModel extends BaseViewModel {
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     ProfileInformation profileInformation  = snapshot.getValue(ProfileInformation.class);
-                    if (profileInformation != null) tempProfiles.add(profileInformation);
+                    if (profileInformation != null) {
+                        profileInformation.setKey(snapshot.getKey());
+                        tempProfiles.add(profileInformation);
+                    }
                 }
 
                 filterResults();
