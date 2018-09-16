@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -64,12 +63,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         return super.onOptionsItemSelected(item);
     }
 
-    private void setFab() {
-        binding.mainAddProfileFab.setVisibility(View.VISIBLE);
-        binding.mainAddProfileFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
-        binding.mainAddProfileFab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NewProfileActivity.class)));
-    }
-
     private void setObservers () {
         viewModel.profilesFetched.observe(this, aBoolean -> {
             if(aBoolean != null) {
@@ -87,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         });
     }
 
+    /********************
+     *                  *
+     *     UI/Views     *
+     *                  *
+     ********************/
+
     private void setRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.mainRecyclerview.setLayoutManager(layoutManager);
@@ -95,6 +94,18 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         binding.mainRecyclerview.setAdapter(adapter);
         setFab();
     }
+
+    private void setFab() {
+        binding.mainAddProfileFab.setVisibility(View.VISIBLE);
+        binding.mainAddProfileFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
+        binding.mainAddProfileFab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NewProfileActivity.class)));
+    }
+
+    /********************
+     *                  *
+     *     Dialogs      *
+     *                  *
+     ********************/
 
     private void showFilterDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -154,6 +165,12 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
         dialog.show();
     }
+
+    /***********************
+     *                     *
+     *   Adapter Callback  *
+     *                     *
+     ***********************/
 
     @Override
     public void onCardClick(int position, ProfileInformation profile) {
