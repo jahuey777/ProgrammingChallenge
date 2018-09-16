@@ -12,4 +12,9 @@ public class CustomBindingAdapter {
     public static void showHide(View view, boolean show) {
         view.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
+    @BindingAdapter("enableView")
+    public static void enable(View view, boolean enabled) {
+        view.setEnabled(enabled);
+    }
 }

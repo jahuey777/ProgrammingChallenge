@@ -5,17 +5,16 @@ import java.util.ArrayList;
 
 import io.realm.annotations.PrimaryKey;
 
-public class ProfileInformation implements Serializable{
+public class ProfileInformation implements Serializable {
 
     @PrimaryKey private String ID;
     private String gender;
     private String name;
     private int age;
     private String imageUrl;
-    private ArrayList<String> hobbies = new ArrayList<>();
+    private String hobbies;
 
-    public ProfileInformation() {
-    }
+    public ProfileInformation() {}
 
     public String getID() {
         return ID;
@@ -35,10 +34,6 @@ public class ProfileInformation implements Serializable{
 
     public String getImageUrl() {
         return imageUrl;
-    }
-
-    public ArrayList<String> getHobbies() {
-        return hobbies;
     }
 
     public void setID(String ID) {
@@ -61,8 +56,25 @@ public class ProfileInformation implements Serializable{
         this.imageUrl = imageUrl;
     }
 
-    public void setHobbies(ArrayList<String> hobbies) {
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
+    }
+
+    public ProfileInformation copyProfile(ProfileInformation profile) {
+        ProfileInformation profileInformation = new ProfileInformation();
+        profileInformation.name = profile.name;
+        profileInformation.age = profile.age;
+        profileInformation.hobbies = profile.hobbies;
+
+        return profileInformation;
+    }
+
+    public boolean sameHobbies(ProfileInformation profile){
+        return this.getHobbies().equals(profile.getHobbies());
     }
 
 }
