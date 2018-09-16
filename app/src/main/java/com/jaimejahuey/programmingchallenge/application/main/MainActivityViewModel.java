@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jaimejahuey.programmingchallenge.application.base.BaseViewModel;
 import com.jaimejahuey.programmingchallenge.model.ProfileInformation;
@@ -30,7 +31,12 @@ public class MainActivityViewModel extends BaseViewModel {
     public void getProfiles() {
         if (mProfilesListener != null) dbReference.removeEventListener(mProfilesListener);
 
-        mProfilesListener = dbReference.orderByChild(currentSort).addValueEventListener(new ValueEventListener() {
+        Query query;
+
+        if(currentSort != null) query = dbReference.orderByChild(currentSort);
+        else query = dbReference.orderByValue();
+
+        mProfilesListener = query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

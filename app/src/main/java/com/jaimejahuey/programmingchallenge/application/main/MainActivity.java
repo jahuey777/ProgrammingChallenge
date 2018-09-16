@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         dialog.setItems(sortOptions, (dialog1, which) -> {
             switch (which) {
                 case 0: //Default
-                    viewModel.currentSort = "id";
+                    viewModel.currentSort = null;
                     viewModel.sortAscending = true;
                     viewModel.getProfiles();
                     break;
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
     @Override
     public void onCardClick(int position, ProfileInformation profile) {
-        startActivity(ProfileActivity.newIntent(this, profile));
+        startActivity(ProfileActivity.newIntent(this, profile, position));
     }
 
 }
