@@ -44,6 +44,7 @@
         <EditText
             android:id="@+id/new_profile_age_edittext"
             android:layout_marginTop="15dp"
+            android:inputType="number"
             app:layout_constraintLeft_toRightOf="@id/new_profile_age_label"
             app:layout_constraintTop_toBottomOf="@id/new_profile_name_label"
             app:layout_constraintRight_toRightOf="parent"
@@ -64,6 +65,10 @@
         <EditText
             android:id="@+id/new_profile_gender_edittext"
             android:layout_marginTop="15dp"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:longClickable="false"
             app:layout_constraintLeft_toRightOf="@id/new_profile_gender_label"
             app:layout_constraintTop_toBottomOf="@id/new_profile_age_label"
             app:layout_constraintRight_toRightOf="parent"
@@ -84,6 +89,7 @@
         <EditText
             android:id="@+id/new_profile_hobbies_edittext"
             android:layout_marginTop="15dp"
+            android:imeOptions="actionDone"
             app:layout_constraintLeft_toRightOf="@id/new_profile_hobbies_label"
             app:layout_constraintTop_toBottomOf="@id/new_profile_gender_label"
             app:layout_constraintRight_toRightOf="parent"

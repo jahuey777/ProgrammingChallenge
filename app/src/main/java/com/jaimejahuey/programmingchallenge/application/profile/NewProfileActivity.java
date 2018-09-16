@@ -3,7 +3,9 @@ package com.jaimejahuey.programmingchallenge.application.profile;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.jaimejahuey.programmingchallenge.R;
@@ -15,6 +17,8 @@ public class NewProfileActivity extends AppCompatActivity {
     ActivityNewProfileBinding binding;
     NewProfileActivityVM viewModel;
 
+    final String [] genders = {"Female", "Male"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +27,21 @@ public class NewProfileActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(NewProfileActivity.this).get(NewProfileActivityVM.class);
 
         setSubmitButton();
+        setEditTextClick();
     }
+
+    private boolean fieldsAreValid() {
+        return !binding.newProfileNameEdittext.getText().toString().isEmpty()
+                && !binding.newProfileAgeEdittext.getText().toString().isEmpty()
+                && !binding.newProfileGenderEdittext.getText().toString().isEmpty()
+                && !binding.newProfileHobbiesEdittext.getText().toString().isEmpty();
+    }
+
+    /********************
+     *                  *
+     *     UI/Views     *
+     *                  *
+     ********************/
 
     private void setSubmitButton() {
         binding.newProfileSubmitButton.setOnClickListener(v -> {
@@ -41,11 +59,34 @@ public class NewProfileActivity extends AppCompatActivity {
         });
     }
 
-    private boolean fieldsAreValid() {
-        return !binding.newProfileNameEdittext.getText().toString().isEmpty()
-                && !binding.newProfileAgeEdittext.getText().toString().isEmpty()
-                && !binding.newProfileGenderEdittext.getText().toString().isEmpty()
-                && !binding.newProfileHobbiesEdittext.getText().toString().isEmpty();
+    private void setEditTextClick() {
+
+        binding.newProfileGenderEdittext.setOnClickListener(v -> {
+        showGenderDialog();
+        });
+    }
+
+    /********************
+     *                  *
+     *     Dialogs      *
+     *                  *
+     ********************/
+
+    private void showGenderDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Gender");
+        dialog.setItems(genders, (dialog1, which) -> {
+            switch (which) {
+                case 0: //Default
+                    binding.newProfileGenderEdittext.setText(genders[0]);
+                    break;
+                case 1: //Age Ascending
+                    binding.newProfileGenderEdittext.setText(genders[1]);
+                    break;
+            }
+        });
+
+        dialog.show();
     }
 
 }

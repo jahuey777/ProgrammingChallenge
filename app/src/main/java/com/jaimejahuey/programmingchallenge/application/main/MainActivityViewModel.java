@@ -28,6 +28,37 @@ public class MainActivityViewModel extends BaseViewModel {
         super();
     }
 
+
+    private void filterResults() {
+        profiles.clear();
+
+        if (currentFilterType != null) {
+            for (ProfileInformation profileInformation: tempProfiles) {
+                if (profileInformation.getGender().toLowerCase().equals(currentFilterType)) {
+                    profiles.add(profileInformation);
+                }
+            }
+        } else {
+            profiles.addAll(tempProfiles);
+        }
+
+    }
+
+    private void updateUi() {
+        if(!profiles.isEmpty()) {
+            profilesFetched.setValue(true);
+        }
+        else {
+            profilesFetched.setValue(false);
+        }
+    }
+
+    /********************
+     *                  *
+     *     FireBase     *
+     *                  *
+     ********************/
+
     public void getProfiles() {
         if (mProfilesListener != null) dbReference.removeEventListener(mProfilesListener);
 
@@ -60,30 +91,6 @@ public class MainActivityViewModel extends BaseViewModel {
                 profilesFetched.setValue(false);
             }
         });
-    }
-
-    private void filterResults() {
-        profiles.clear();
-
-        if (currentFilterType != null) {
-            for (ProfileInformation profileInformation: tempProfiles) {
-                if (profileInformation.getGender().toLowerCase().equals(currentFilterType)) {
-                    profiles.add(profileInformation);
-                }
-            }
-        } else {
-            profiles.addAll(tempProfiles);
-        }
-
-    }
-
-    private void updateUi() {
-        if(!profiles.isEmpty()) {
-            profilesFetched.setValue(true);
-        }
-        else {
-            profilesFetched.setValue(false);
-        }
     }
 
 }
