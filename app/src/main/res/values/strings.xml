@@ -10,5 +10,10 @@
     <string name="text_name">Name</string>
     <string name="text_sort">Sort</string>
     <string name="text_delete">Delete</string>
+    <string name="text_no">No</string>
+    <string name="text_yes">Yes</string>
+    <string name="text_save_changes">Save changes?</string>
+    <string name="text_delete_profile">Delete profile?</string>
+    <string name="text_submit">Submit</string>
 
 </resources>

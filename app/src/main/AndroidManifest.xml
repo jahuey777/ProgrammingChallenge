@@ -23,6 +23,7 @@
         <activity android:name=".application.profile.ProfileActivity"
             android:parentActivityName=".application.main.MainActivity"
             android:label="Profile"/>
+        <activity android:name=".application.profile.NewProfileActivity" />
 
     </application>
 

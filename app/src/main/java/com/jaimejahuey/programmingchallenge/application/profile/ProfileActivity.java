@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
         if(!binding.getShowEditingFab() && !viewModel.profile.sameHobbies(viewModel.copyProfile)){
             showConfirmationDialog(true);
         } else {
-            finish();
+            super.onBackPressed();
         }
     }
 
@@ -120,6 +120,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setFabs() {
+        if (viewModel.profile.getGender().equals("male")){
+            binding.profileSaveFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
+            binding.profileEditFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
+        }
+
         binding.profileEditFab.setOnClickListener(v -> {
             binding.profileIncludedProfileInfo.setIsEditing(true);
             binding.setShowEditingFab(false);
@@ -137,11 +142,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void showConfirmationDialog(boolean finish) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Save changes?");
-        dialog.setNegativeButton("No", (dialog2, which) -> {
+        dialog.setTitle(R.string.text_save_changes);
+        dialog.setNegativeButton(R.string.text_no, (dialog2, which) -> {
             if(finish) ProfileActivity.this.finish();
         });
-        dialog.setPositiveButton("Yes", (dialog1, which) -> {
+        dialog.setPositiveButton(R.string.text_yes, (dialog1, which) -> {
             viewModel.saveChangesToFireBase();
             binding.setShowEditingFab(true);
             binding.profileIncludedProfileInfo.setIsEditing(false);
@@ -154,9 +159,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void showDeleteDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Delete profile?");
-        dialog.setNegativeButton("No", null);
-        dialog.setPositiveButton("Yes", (dialog1, which) -> {
+        dialog.setTitle(R.string.text_delete_profile);
+        dialog.setNegativeButton(R.string.text_no, null);
+        dialog.setPositiveButton(R.string.text_yes, (dialog1, which) -> {
             viewModel.deleteProfileFromFirebase();
             ProfileActivity.this.finish();
         });

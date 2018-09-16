@@ -1,6 +1,7 @@
 package com.jaimejahuey.programmingchallenge.application.main;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jaimejahuey.programmingchallenge.R;
+import com.jaimejahuey.programmingchallenge.application.profile.NewProfileActivity;
 import com.jaimejahuey.programmingchallenge.application.profile.ProfileActivity;
 import com.jaimejahuey.programmingchallenge.databinding.ActivityMainBinding;
 import com.jaimejahuey.programmingchallenge.model.ProfileInformation;
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
         return super.onOptionsItemSelected(item);
     }
 
+    private void setFab() {
+        binding.mainAddProfileFab.setVisibility(View.VISIBLE);
+        binding.mainAddProfileFab.setBackgroundTintList(getResources().getColorStateList(R.color.colorMaleBackgroud));
+        binding.mainAddProfileFab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NewProfileActivity.class)));
+    }
+
     private void setObservers () {
         viewModel.profilesFetched.observe(this, aBoolean -> {
             if(aBoolean != null) {
@@ -70,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
                     setRecyclerView();
                 } else {
                     binding.mainRecyclerview.setVisibility(View.GONE);
+                    binding.mainAddProfileFab.setVisibility(View.GONE);
                     binding.mainErrorText.setVisibility(View.VISIBLE);
                 }
 
@@ -84,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.onSel
 
         adapter = new MainAdapter(viewModel.profiles, this);
         binding.mainRecyclerview.setAdapter(adapter);
+        setFab();
     }
 
     private void showFilterDialog() {

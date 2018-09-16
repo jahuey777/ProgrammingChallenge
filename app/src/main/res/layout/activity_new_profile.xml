@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/new_profile_name_label"
+            android:text="@string/text_name"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/new_profile_name_edittext"
+            app:layout_constraintRight_toLeftOf="@id/new_profile_name_edittext"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle" />
+
+        <EditText
+            android:id="@+id/new_profile_name_edittext"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toRightOf="@id/new_profile_name_label"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="James"
+            style="@style/AppTheme.ProfileEditTextStyle" />
+
+        <TextView
+            android:id="@+id/new_profile_age_label"
+            android:text="@string/text_age"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_name_label"
+            app:layout_constraintBottom_toBottomOf="@id/new_profile_age_edittext"
+            app:layout_constraintRight_toLeftOf="@id/new_profile_age_edittext"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle" />
+
+        <EditText
+            android:id="@+id/new_profile_age_edittext"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toRightOf="@id/new_profile_age_label"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_name_label"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="23"
+            style="@style/AppTheme.ProfileEditTextStyle" />
+
+        <TextView
+            android:id="@+id/new_profile_gender_label"
+            android:text="@string/text_gender"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_age_label"
+            app:layout_constraintBottom_toBottomOf="@id/new_profile_gender_edittext"
+            app:layout_constraintRight_toLeftOf="@id/new_profile_gender_edittext"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle" />
+
+        <EditText
+            android:id="@+id/new_profile_gender_edittext"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toRightOf="@id/new_profile_gender_label"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_age_label"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Male"
+            style="@style/AppTheme.ProfileEditTextStyle" />
+
+        <TextView
+            android:id="@+id/new_profile_hobbies_label"
+            android:text="@string/text_hobbies"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_gender_label"
+            app:layout_constraintBottom_toBottomOf="@id/new_profile_hobbies_edittext"
+            app:layout_constraintRight_toLeftOf="@id/new_profile_hobbies_edittext"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            style="@style/AppTheme.ProfileTextViewStyle" />
+
+        <EditText
+            android:id="@+id/new_profile_hobbies_edittext"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toRightOf="@id/new_profile_hobbies_label"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_gender_label"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Soccer, tennis, golf"
+            style="@style/AppTheme.ProfileEditTextStyle" />
+
+        <Button
+            android:id="@+id/new_profile_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_submit"
+            android:layout_marginTop="50dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_profile_hobbies_edittext"
+            app:layout_constraintLeft_toLeftOf="parent"
+            style="@style/Base.TextAppearance.AppCompat.Button"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

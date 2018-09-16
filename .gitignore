@@ -40,6 +40,3 @@ captures/
 .idea/tasks.xml
 .idea/dictionaries
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
-
